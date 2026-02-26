@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Beam–Obstacle Animations (DNC)</title>
   <style>
+    :root {
+      --bg-top: #f9fbff;
+      --bg-mid: #eef4fb;
+      --bg-bottom: #e7edf6;
+      --text: #2e3a48;
+      --muted: #516173;
+    }
+
     html, body {
       margin: 0;
       width: 100%;
@@ -17,8 +25,9 @@
       display: grid;
       grid-template-rows: auto 1fr;
       font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: #f2f2f2;
+      background:
+        radial-gradient(140% 120% at 15% 5%, var(--bg-top) 0%, var(--bg-mid) 58%, var(--bg-bottom) 100%);
+      color: var(--text);
     }
     header {
       padding: 8px 12px;
@@ -26,20 +35,21 @@
       font-weight: 600;
       line-height: 1.2;
       text-align: center;
+      color: var(--text);
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-rows: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      padding: 8px;
+      gap: 6px;
+      padding: 6px 8px 8px;
       min-height: 0;
     }
     .card {
-      background: #141414;
-      border: 1px solid #2a2a2a;
-      border-radius: 10px;
-      padding: 6px;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 4px;
       display: flex;
       flex-direction: column;
       min-height: 0;
@@ -47,7 +57,7 @@
     .title {
       font-size: 11px;
       margin: 0 0 4px 0;
-      opacity: .9;
+      color: var(--muted);
       line-height: 1.15;
       min-height: 0;
       white-space: nowrap;
@@ -57,8 +67,8 @@
     .media {
       flex: 1;
       min-height: 0;
-      border-radius: 8px;
-      background: #000;
+      border-radius: 0;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
