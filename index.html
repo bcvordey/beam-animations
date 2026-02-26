@@ -11,6 +11,8 @@
       --bg-bottom: #e7edf6;
       --text: #2e3a48;
       --muted: #516173;
+      --main-title: #0f3d7a;
+      --card-title: #8a4b00;
     }
 
     html, body {
@@ -35,7 +37,7 @@
       font-weight: 600;
       line-height: 1.2;
       text-align: center;
-      color: var(--text);
+      color: var(--main-title);
     }
     .grid {
       display: grid;
@@ -55,9 +57,9 @@
       min-height: 0;
     }
     .title {
-      font-size: 11px;
+      font-size: clamp(13px, 1.4vw, 15px);
       margin: 0 0 4px 0;
-      color: var(--muted);
+      color: var(--card-title);
       line-height: 1.15;
       min-height: 0;
       white-space: nowrap;
