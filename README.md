@@ -27,7 +27,7 @@ The mathematical analysis and finite element discretization underlying these sim
 The computational solvers used to generate these animations are publicly available in companion repositories:
 
 - **Python solver:** [https://github.com/bcvordey/dnc-beam-python](https://github.com/bcvordey/dnc-beam-python)
-- **MATLAB solver:** [https://github.com/bcvordey/dnc-beam-matlab](https://github.com/bcvordey/dnc-beam-matlab)
+- **MATLAB solver:** [https://github.com/bcvordey/beam-contact-solvers](https://github.com/bcvordey/beam-contact-solvers)
 
 ## What the Animations Demonstrate
 
