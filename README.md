@@ -40,7 +40,7 @@ Source repository:
 ## Repository contents
 
 - `index.html` contains the full static viewer, layout, navigation, video synchronization, and time overlays.
-- The `.mp4` files are the beam-obstacle simulation animations displayed by the page.
+- `videos/` contains the beam-obstacle simulation `.mp4` animations displayed by the page.
 - `.github/workflows/static.yml` deploys the static page to GitHub Pages from the `main` branch.
 
 ## Local preview
