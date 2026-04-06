@@ -1,58 +1,104 @@
-# Beam-Obstacle Contact and DNC Transition Visualizer
+# Beam-Obstacle Contact Simulations Under the Damped Normal Compliance Condition
 
-This repository hosts a GitHub Pages visualization of beam-obstacle contact simulations. The page presents side-by-side animations that show how a deformable beam transitions into contact with obstacle constraints under the DNC condition, including the penetration response observed as the obstacle stiffness changes.
+This repository provides a publicly accessible, interactive visualization of beam-obstacle contact simulations governed by the Damped Normal Compliance (DNC) condition. The animations display the dynamic behavior of an Euler-Bernoulli beam vibrating in contact with one or more obstacles, showing how obstacle stiffness and damping parameters affect penetration depth, rebound dynamics, and settling behavior.
 
-The exhibit is intended to make the simulation results easier to inspect, compare, and present. In particular, it highlights the contrast between soft obstacles and increasingly hard obstacles by varying the stiffness parameter `kappa` from `0.1` to `1000`.
+These simulations accompany the peer-reviewed publication:
 
-## Live animation page
+> Saylor, G.; Shillor, M.; Vordey, C. "Model and Simulations of Contact Between a Vibrating Beam and an Obstacle Using the Damped Normal Compliance Condition." *Axioms* 2025, 14(12), 866.
 
-View the deployed visualization here:
+## Live Visualization
 
-<https://bcvordey.github.io/beam-animations/>
+View the deployed animation page here:
+
+**[https://bcvordey.github.io/beam-animations/](https://bcvordey.github.io/beam-animations/)**
 
 Source repository:
 
-<https://github.com/bcvordey/beam-animations>
+**[https://github.com/bcvordey/beam-animations](https://github.com/bcvordey/beam-animations)**
 
-## What the page demonstrates
+## Background
 
-- Single-obstacle beam contact under the DNC condition for different `kappa` values.
-- The change in penetration behavior as the obstacle stiffness increases from soft contact to hard contact.
-- Two-boundary-obstacle contact cases for different `beta` settings.
-- Distributed obstacle contact cases with the same stiffness sweep.
-- Synchronized 2x2 comparisons that make the effect of stiffness and model parameters easier to see across simulations.
+Classical contact models in structural mechanics typically assume either rigid obstacles (the Signorini condition) or purely elastic contact response (the standard Normal Compliance condition). Neither captures the energy dissipation that occurs during real physical contact. The DNC condition addresses this gap by incorporating an explicit damping term into the contact formulation, so the model represents what happens during impact: energy is lost to heat, deformation, and internal friction rather than being recovered elastically.
 
-## Animation groups
+The mathematical analysis and finite element discretization underlying these simulations are developed in the published paper and in the doctoral dissertation:
 
-- Page 1: single obstacle, `beta = 0.1`, with `kappa = 0.1`, `10`, `100`, and `1000`.
-- Page 2: single obstacle DNC cases, including `beta = 1` examples and stronger-load cases marked with `f = -5`.
-- Page 3: two boundary obstacles, `beta = 1`, with the full `kappa` sweep.
-- Page 4: two boundary obstacles, `beta = 5`, with the full `kappa` sweep.
-- Page 5: distributed obstacle set, `beta = 1`, with the full `kappa` sweep.
+> Vordey, C. "Dynamics and Vibrations of an Euler-Bernoulli Beam in Contact with Obstacles under the Damped Normal Compliance Condition." Ph.D. Dissertation, Oakland University, 2026.
 
-## Viewer controls
+The computational solvers used to generate these animations are publicly available in companion repositories:
 
-- Use `Prev` and `Next` to move between animation groups.
-- Use the numbered buttons to jump directly to a page.
-- Use `Pause`, `Restart`, and `Sync` to compare animations more precisely.
-- Keyboard shortcuts are also supported: left/right arrows change pages, `R` restarts the active page, and number keys jump to pages.
+- **Python solver:** [https://github.com/bcvordey/dnc-beam-python](https://github.com/bcvordey/dnc-beam-python)
+- **MATLAB solver:** [https://github.com/bcvordey/dnc-beam-matlab](https://github.com/bcvordey/dnc-beam-matlab)
 
-## Repository contents
+## What the Animations Demonstrate
 
-- `index.html` contains the full static viewer, layout, navigation, video synchronization, and time overlays.
-- `videos/` contains the beam-obstacle simulation `.mp4` animations displayed by the page.
-- `.github/workflows/static.yml` deploys the static page to GitHub Pages from the `main` branch.
+The visualization page presents synchronized side-by-side animations that allow direct comparison of contact dynamics across a systematic range of parameters. The stiffness parameter kappa ranges from 0.1 (soft contact) to 1000 (hard contact), and the damping parameter beta takes values of 0.1, 1, and 5.
 
-## Local preview
+Each animation shows the beam displacement over time as it interacts with one or more obstacles. The key physical phenomena visible in the animations include:
 
-From this folder, open the page in a browser:
+- **Penetration depth reduction** as obstacle stiffness increases, transitioning from deep soft-contact penetration to near-rigid response at high kappa values.
+- **Accelerated settling** as damping increases, with higher beta values producing faster energy dissipation and shorter transient response.
+- **Vibration frequency modification** resulting from the coupled stiffness-damping interaction at the contact interface.
+- **Multi-obstacle contact behavior** under boundary and distributed obstacle configurations.
+
+These observations are quantitatively validated in the published paper and provide visual evidence that the DNC model captures physically realistic contact behavior.
+
+## Animation Groups
+
+The page is organized into five groups, each presenting a 2x2 synchronized comparison:
+
+- **Page 1:** Single boundary obstacle, beta = 0.1, with kappa = 0.1, 10, 100, and 1000.
+- **Page 2:** Single boundary obstacle under DNC conditions, including beta = 1 cases and stronger loading (f = -5).
+- **Page 3:** Two boundary obstacles, beta = 1, with kappa = 0.1, 10, 100, and 1000.
+- **Page 4:** Two boundary obstacles, beta = 5, with kappa = 0.1, 10, 100, and 1000.
+- **Page 5:** Distributed obstacle set, beta = 1, with kappa = 0.1, 10, 100, and 1000.
+
+## Viewer Controls
+
+The page includes navigation and synchronization controls for precise comparison:
+
+- **Prev / Next** buttons move between animation groups.
+- **Numbered buttons** jump directly to a specific page.
+- **Pause**, **Restart**, and **Sync** allow frame-level comparison across the four simultaneous animations.
+- **Keyboard shortcuts:** Left/right arrows change pages. R restarts the current page. Number keys (1 through 5) jump to pages directly.
+
+## Engineering Relevance
+
+The parameter studies visualized here have direct engineering applications. The stiffness and damping values explored in these animations map to design variables in several domains:
+
+- **MEMS and semiconductor devices**, where micro-scale contact interfaces undergo millions of loading cycles and reliability depends on energy dissipation at contact surfaces.
+- **Transportation safety**, where crash detection systems and vehicle structural components involve impact dynamics with finite stiffness and damping.
+- **Infrastructure resilience**, where bridge expansion joints, pavement-soil contact, and railway wheel-rail interfaces experience repetitive impact loading.
+- **Robotics and prosthetics**, where controlled contact with objects and surfaces requires optimized stiffness-damping parameter selection.
+
+By making these simulation results publicly available and visually accessible, this repository enables researchers and engineers to inspect DNC contact behavior without deriving the mathematics or running the solvers themselves.
+
+## Repository Contents
+
+- `index.html` contains the complete static viewer, including layout, navigation, video synchronization logic, and time overlays.
+- `videos/` contains the beam-obstacle simulation animations in .mp4 format.
+- `.github/workflows/static.yml` deploys the page to GitHub Pages from the main branch.
+
+## Local Preview
+
+To view the animations locally, open the page in any browser:
 
 ```bash
 open index.html
 ```
 
-You can also double-click `index.html` in Finder to view the same animation dashboard locally.
+## Citation
 
-## Suggested citation-style description
+If you use these visualizations or the underlying simulation results in your work, please cite:
 
-This project provides a public interactive visualization artifact for beam-obstacle contact simulations, demonstrating DNC transition behavior and stiffness-dependent penetration response across soft, hard, boundary, and distributed obstacle configurations.
+```
+Saylor, G.; Shillor, M.; Vordey, C. "Model and Simulations of Contact Between
+a Vibrating Beam and an Obstacle Using the Damped Normal Compliance Condition."
+Axioms 2025, 14(12), 866.
+```
+
+## Author
+
+Cornelius Bright Vordey
+Ph.D. Candidate, Applied Mathematical Sciences
+Oakland University, Rochester, Michigan
+ORCID: [0009-0005-1644-9827](https://orcid.org/0009-0005-1644-9827)
